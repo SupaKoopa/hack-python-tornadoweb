@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/html">
+      <head>
+        <title>{% block title %}{% end %}</title>
+      </head>
+      <body>
+        <form action="search" method="post">
+            <span>Search</span><input type="text" name="q" value="{{query}}"/>
+            <input type="submit" name="search" title="Search">
+            </br>
+
+        </form>
+        <ul>
+          {% for item in items %}
+            {% block searchItem %}
+              <li>{{ escape(item.name) }}
+                  </br>
+                  <img src="{{item.imageUrl}}"/>
+              </li>
+            {% end %}
+          {% end %}
+        </ul>
+
+        </br></br>
+        <div class="large-12 columns panel">
+            {% for i in range(0, min(3, total // 3)) %}
+                {% if i+1 == current_page %}
+                    {{ i + 1 }}
+                {% else %}
+                    <a href="?page={{i+1}}">{{i+1}}</a>
+                {% end %}
+            {% end %}
+        </div>
+      </body>
+    </html>

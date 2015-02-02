@@ -1,0 +1,23 @@
+
+message Product {
+  required string name = 1;
+  required int32 id = 2;
+  required string barcode = 3;
+  optional float price = 4;
+
+  enum Type {
+    marketplace = 0;
+    kalahari = 1;
+    both = 2;
+  }
+
+  required Type productType = 5 [default = kalahari];
+
+  message Variant {
+    required string id = 1;
+    required string barcode = 2;
+  }
+
+
+  repeated Variant productVariant = 6;
+}
